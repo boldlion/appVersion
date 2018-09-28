@@ -10,11 +10,22 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var versionLabel: UILabel!
+    let kVersion       = "CFBundleShortVersionString"
+    let kBuildNumber   = "CFBundleVersion"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        versionLabel.text = getAppversion()
     }
-
+    
+    func getAppversion() -> String {
+        
+        let infoDictionary = Bundle.main.infoDictionary!
+        let version        = infoDictionary[kVersion] as! String
+        let build          = infoDictionary[kBuildNumber] as! String
+        return "App version: " + version + "." + build
+    }
 
 }
 
